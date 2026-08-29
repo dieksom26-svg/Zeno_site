@@ -1,0 +1,481 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Zeno Financeiro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #d1d5db;
+        }
+
+        .titulo-planos {
+            text-align: center;
+            margin-top: 45px;
+        }
+
+        .titulo-planos h2 {
+            font-size: 30px;
+            color: #111827;
+        }
+
+        .titulo-planos p {
+            margin-top: 8px;
+            color: #64748b;
+        }
+
+        .planos {
+            max-width: 1100px;
+            margin: 35px auto 50px;
+            padding: 20px;
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+        }
+
+        .plano {
+            background: white;
+            width: 300px;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 1px solid #e5e7eb;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plano:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .plano.destaque {
+            border: 2px solid #2563eb;
+            position: relative;
+        }
+
+        .melhor {
+            background: #2563eb;
+            color: white;
+            padding: 7px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .plano h2 {
+            margin-bottom: 10px;
+            font-size: 25px;
+            color: #111827;
+        }
+
+        .descricao {
+            color: #64748b;
+            font-size: 14px;
+            min-height: 38px;
+        }
+
+        .preco {
+            font-size: 34px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #2563eb;
+        }
+
+        .periodo {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: normal;
+        }
+
+        .plano ul {
+            list-style: none;
+            margin-bottom: 25px;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .plano li {
+            margin: 12px 0;
+            color: #374151;
+        }
+
+        .buy-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .buy-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .beneficios {
+            max-width: 900px;
+            margin: 0 auto 50px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .beneficios h2 {
+            margin-bottom: 20px;
+        }
+
+        .beneficios-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .beneficio {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            width: 250px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+        }
+
+        .beneficio strong {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .beneficio p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #111827;
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .plano {
+                width: 100%;
+                max-width: 350px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>
+        ZENO FINANCEIRO
+    </h1>
+
+    <p>
+        Controle financeiro simples, rápido e inteligente.
+    </p>
+
+</header>
+
+
+<section class="titulo-planos">
+
+    <h2>
+        Escolha seu plano
+    </h2>
+
+    <p>
+        Comece a organizar sua vida financeira.
+    </p>
+
+</section>
+
+
+<section class="planos">
+
+
+    <!-- MENSAL -->
+
+    <div class="plano">
+
+        <h2>
+            Plano Mensal
+        </h2>
+
+        <p class="descricao">
+            Para começar sem compromisso.
+        </p>
+
+        <div class="preco">
+            R$ 4,99
+            <span class="periodo">
+                /mês
+            </span>
+        </div>
+
+        <ul>
+
+            <li>✔ Controle financeiro</li>
+
+            <li>✔ Entradas e saídas</li>
+
+            <li>✔ Categorias</li>
+
+            <li>✔ Relatórios</li>
+
+        </ul>
+
+        <button
+            class="buy-button"
+            data-plan="Mensal">
+
+            Comprar Plano Mensal
+
+        </button>
+
+    </div>
+
+
+
+    <!-- ANUAL -->
+
+    <div class="plano destaque">
+
+        <span class="melhor">
+            MAIS VANTAJOSO
+        </span>
+
+        <h2>
+            Plano Anual
+        </h2>
+
+        <p class="descricao">
+            Para quem quer economizar.
+        </p>
+
+        <div class="preco">
+            R$ 24,90
+            <span class="periodo">
+                /ano
+            </span>
+        </div>
+
+        <ul>
+
+            <li>✔ Todas as funções</li>
+
+            <li>✔ Controle financeiro</li>
+
+            <li>✔ Orçamentos</li>
+
+            <li>✔ Relatórios</li>
+
+        </ul>
+
+        <button
+            class="buy-button"
+            data-plan="Anual">
+
+            Comprar Plano Anual
+
+        </button>
+
+    </div>
+
+
+
+    <!-- VITALÍCIO -->
+
+    <div class="plano">
+
+        <h2>
+            Plano Vitalício
+        </h2>
+
+        <p class="descricao">
+            Pague uma vez e tenha acesso permanente.
+        </p>
+
+        <div class="preco">
+            R$ 49,90
+        </div>
+
+        <ul>
+
+            <li>✔ Todas as funções</li>
+
+            <li>✔ Acesso permanente</li>
+
+            <li>✔ Atualizações</li>
+
+            <li>✔ Sem mensalidade</li>
+
+        </ul>
+
+        <button
+            class="buy-button"
+            data-plan="Vitalício">
+
+            Comprar Vitalício
+
+        </button>
+
+    </div>
+
+
+</section>
+
+
+<section class="beneficios">
+
+    <h2>
+        Por que usar o Zeno?
+    </h2>
+
+    <div class="beneficios-grid">
+
+        <div class="beneficio">
+
+            <strong>
+                📊 Organização
+            </strong>
+
+            <p>
+                Tenha controle das suas entradas e saídas.
+            </p>
+
+        </div>
+
+
+        <div class="beneficio">
+
+            <strong>
+                💰 Controle
+            </strong>
+
+            <p>
+                Acompanhe seu saldo de forma simples.
+            </p>
+
+        </div>
+
+
+        <div class="beneficio">
+
+            <strong>
+                🔒 Segurança
+            </strong>
+
+            <p>
+                Uma ferramenta feita para facilitar sua organização.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 Zeno Financeiro
+
+</footer>
+
+
+
+<script>
+
+    const botoesCompra =
+        document.querySelectorAll(".buy-button");
+
+
+    botoesCompra.forEach(function(botao) {
+
+        botao.addEventListener(
+            "click",
+            function() {
+
+                const plano =
+                    botao.getAttribute("data-plan");
+
+
+                localStorage.setItem(
+                    "planoZeno",
+                    plano
+                );
+
+
+                window.location.href =
+                    "pagamento.html";
+
+            }
+        );
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
+

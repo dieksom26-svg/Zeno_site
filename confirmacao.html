@@ -1,0 +1,389 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pedido Confirmado | Zeno Financeiro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            color: #172033;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            font-size: 30px;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #cbd5e1;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(0,0,0,.10);
+        }
+
+        .icone {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .subtitulo {
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .pedido {
+            background: #eff6ff;
+            border: 1px solid #dbeafe;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .linha {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #dbeafe;
+            text-align: left;
+        }
+
+        .linha:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            color: #64748b;
+        }
+
+        .valor {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .preco {
+            color: #2563eb;
+            font-size: 20px;
+        }
+
+        .aviso {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            color: #9a3412;
+            padding: 15px;
+            border-radius: 10px;
+            line-height: 1.5;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .voltar {
+            display: block;
+            margin-top: 25px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .voltar:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+            padding: 25px;
+        }
+
+        @media (max-width: 500px) {
+
+            .container {
+                margin: 25px auto;
+                padding: 12px;
+            }
+
+            .card {
+                padding: 25px 18px;
+            }
+
+            .linha {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .valor {
+                text-align: left;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>
+        ZENO FINANCEIRO
+    </h1>
+
+    <p>
+        Confirmação do pedido
+    </p>
+
+</header>
+
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="icone">
+            ✅
+        </div>
+
+        <h2>
+            Pedido recebido!
+        </h2>
+
+        <p class="subtitulo">
+
+            Recebemos sua confirmação.
+            Aguarde a verificação do pagamento.
+
+        </p>
+
+
+        <div class="pedido">
+
+
+            <div class="linha">
+
+                <span class="label">
+                    Número do pedido
+                </span>
+
+                <span
+                    class="valor"
+                    id="numeroPedido">
+
+                    -
+
+                </span>
+
+            </div>
+
+
+            <div class="linha">
+
+                <span class="label">
+                    Plano
+                </span>
+
+                <span
+                    class="valor"
+                    id="plano">
+
+                    -
+
+                </span>
+
+            </div>
+
+
+            <div class="linha">
+
+                <span class="label">
+                    Valor
+                </span>
+
+                <span
+                    class="valor preco"
+                    id="valor">
+
+                    R$ 0,00
+
+                </span>
+
+            </div>
+
+
+            <div class="linha">
+
+                <span class="label">
+                    Pagamento
+                </span>
+
+                <span class="valor">
+                    Pix
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="aviso">
+
+            🔒 Depois de confirmar o pagamento,
+            a licença será liberada após a
+            verificação do recebimento.
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="voltar">
+
+            ← Voltar para os planos
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 Zeno Financeiro
+
+</footer>
+
+
+
+<script>
+
+
+    // ==========================================
+    // RECUPERAR DADOS DO PEDIDO
+    // ==========================================
+
+    const plano =
+        localStorage.getItem("planoZeno");
+
+
+    const numeroPedido =
+        localStorage.getItem("pedidoZeno");
+
+
+
+    // ==========================================
+    // DEFINIR O PREÇO ATUAL
+    // ==========================================
+
+    let valor = 0;
+
+
+    if (plano === "Mensal") {
+
+        valor = 4.99;
+
+    }
+
+    else if (plano === "Anual") {
+
+        valor = 24.90;
+
+    }
+
+    else if (plano === "Vitalício") {
+
+        valor = 49.90;
+
+    }
+
+
+
+    // ==========================================
+    // FORMATAR PREÇO
+    // ==========================================
+
+    const valorFormatado =
+        valor.toLocaleString(
+            "pt-BR",
+            {
+                style: "currency",
+                currency: "BRL"
+            }
+        );
+
+
+
+    // ==========================================
+    // MOSTRAR NA TELA
+    // ==========================================
+
+    document
+        .getElementById("numeroPedido")
+        .textContent =
+        numeroPedido || "-";
+
+
+    document
+        .getElementById("plano")
+        .textContent =
+        plano || "-";
+
+
+    document
+        .getElementById("valor")
+        .textContent =
+        valorFormatado;
+
+
+</script>
+
+
+</body>
+
+</html>
+

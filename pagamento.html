@@ -1,0 +1,1096 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pagamento | Zeno Financeiro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #eef4ff, #f8fafc);
+            color: #172033;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 28px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 30px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 7px;
+            color: #cbd5e1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(15,23,42,0.10);
+        }
+
+        .titulo {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .pedido {
+            background: linear-gradient(135deg, #eff6ff, #f8fbff);
+            border: 1px solid #dbeafe;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .pedido-label {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        #nomePlano {
+            color: #2563eb;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        #valorPlano {
+            margin-top: 10px;
+            font-size: 34px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .numero-pedido {
+            margin-top: 18px;
+            padding: 13px;
+            background: white;
+            border-radius: 9px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .numero-pedido span {
+            display: block;
+            font-size: 11px;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        #numeroPedido {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .pix {
+            border: 2px solid #dcfce7;
+            background: #f0fdf4;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .pix h2 {
+            color: #15803d;
+            margin-bottom: 10px;
+        }
+
+        .pix p {
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .chave {
+            background: white;
+            border: 2px dashed #86efac;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 20px;
+        }
+
+        .chave-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        #chavePix {
+            font-size: 18px;
+            font-weight: bold;
+            word-break: break-all;
+            color: #111827;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .copiar {
+            background: #2563eb;
+            color: white;
+        }
+
+        .copiar:hover {
+            background: #1d4ed8;
+        }
+
+        .pagamento-feito {
+            background: #16a34a;
+            color: white;
+            margin-top: 25px;
+        }
+
+        .pagamento-feito:hover {
+            background: #15803d;
+        }
+
+        .enviar {
+            background: #2563eb;
+            color: white;
+        }
+
+        .enviar:hover {
+            background: #1d4ed8;
+        }
+
+        .passos {
+            margin-top: 25px;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .passos h3 {
+            margin-bottom: 15px;
+        }
+
+        .passo {
+            display: flex;
+            gap: 10px;
+            margin: 12px 0;
+            color: #475569;
+            line-height: 1.4;
+        }
+
+        .numero {
+            min-width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .aviso {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 10px;
+            color: #9a3412;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .formulario {
+            display: none;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .formulario h2 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .formulario-subtitulo {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 22px;
+            font-size: 14px;
+        }
+
+        .campo {
+            margin-bottom: 17px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            font-size: 16px;
+        }
+
+        .campo input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .campo input[readonly] {
+            background: #f8fafc;
+            color: #475569;
+        }
+
+        .seguranca {
+            text-align: center;
+            margin-top: 25px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .voltar {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .voltar:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 20px auto;
+                padding: 12px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+
+            header h1 {
+                font-size: 25px;
+            }
+
+            #valorPlano {
+                font-size: 29px;
+            }
+
+            #chavePix {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>
+        ZENO FINANCEIRO
+    </h1>
+
+    <p>
+        Pagamento seguro via Pix
+    </p>
+
+</header>
+
+
+<div class="container">
+
+    <div class="card">
+
+
+        <div class="titulo">
+            Finalize seu pedido
+        </div>
+
+
+        <!-- PEDIDO -->
+
+        <div class="pedido">
+
+            <div class="pedido-label">
+                PLANO SELECIONADO
+            </div>
+
+            <div id="nomePlano">
+                Carregando...
+            </div>
+
+            <div id="valorPlano">
+                R$ 0,00
+            </div>
+
+
+            <div class="numero-pedido">
+
+                <span>
+                    NÚMERO DO PEDIDO
+                </span>
+
+                <div id="numeroPedido">
+                    Gerando...
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PIX -->
+
+        <div class="pix">
+
+            <h2>
+                💠 Pague com Pix
+            </h2>
+
+            <p>
+                Use a chave Pix abaixo para realizar
+                o pagamento.
+            </p>
+
+
+            <div class="chave">
+
+                <div class="chave-label">
+                    CHAVE PIX
+                </div>
+
+                <div id="chavePix">
+                    dieksom25@gmail.com
+                </div>
+
+
+                <button
+                    class="copiar"
+                    id="copiarPix">
+
+                    📋 Copiar chave Pix
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PASSOS -->
+
+        <div class="passos">
+
+            <h3>
+                Como realizar o pagamento
+            </h3>
+
+
+            <div class="passo">
+
+                <div class="numero">
+                    1
+                </div>
+
+                <div>
+                    Abra o aplicativo do seu banco.
+                </div>
+
+            </div>
+
+
+            <div class="passo">
+
+                <div class="numero">
+                    2
+                </div>
+
+                <div>
+                    Escolha a opção Pix.
+                </div>
+
+            </div>
+
+
+            <div class="passo">
+
+                <div class="numero">
+                    3
+                </div>
+
+                <div>
+                    Informe a chave Pix.
+                </div>
+
+            </div>
+
+
+            <div class="passo">
+
+                <div class="numero">
+                    4
+                </div>
+
+                <div>
+                    Confira o valor e confirme.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="aviso">
+
+            ⚠️ Depois de realizar o pagamento,
+            clique em <strong>“Já fiz o pagamento”</strong>.
+
+        </div>
+
+
+        <!-- BOTÃO PAGAMENTO -->
+
+        <button
+            class="pagamento-feito"
+            id="pagamentoFeito">
+
+            ✅ Já fiz o pagamento
+
+        </button>
+
+
+        <!-- FORMULÁRIO -->
+
+        <div
+            class="formulario"
+            id="formulario">
+
+
+            <h2>
+                Confirmar pagamento
+            </h2>
+
+
+            <div class="formulario-subtitulo">
+
+                Informe seus dados para enviar
+                a confirmação do pedido.
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="nome">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite seu nome">
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="email">
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite seu e-mail">
+
+            </div>
+
+
+            <div class="campo">
+
+                <label>
+                    Plano
+                </label>
+
+                <input
+                    type="text"
+                    id="planoFormulario"
+                    readonly>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label>
+                    Valor
+                </label>
+
+                <input
+                    type="text"
+                    id="valorFormulario"
+                    readonly>
+
+            </div>
+
+
+            <div class="campo">
+
+                <label>
+                    Número do pedido
+                </label>
+
+                <input
+                    type="text"
+                    id="pedidoFormulario"
+                    readonly>
+
+            </div>
+
+
+            <button
+                class="enviar"
+                id="enviar">
+
+                📧 Enviar confirmação por e-mail
+
+            </button>
+
+
+        </div>
+
+
+        <div class="seguranca">
+
+            🔒 Seus dados são usados apenas
+            para identificação do pedido.
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="voltar">
+
+            ← Voltar para os planos
+
+        </a>
+
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 Zeno Financeiro
+
+</footer>
+
+
+
+<script>
+
+
+    // ==========================================
+    // RECUPERAR PLANO
+    // ==========================================
+
+    const plano =
+        localStorage.getItem("planoZeno");
+
+
+    const nomePlano =
+        document.getElementById("nomePlano");
+
+
+    const valorPlano =
+        document.getElementById("valorPlano");
+
+
+    const planoFormulario =
+        document.getElementById("planoFormulario");
+
+
+    const valorFormulario =
+        document.getElementById("valorFormulario");
+
+
+    const pedidoFormulario =
+        document.getElementById("pedidoFormulario");
+
+
+    let valor = 0;
+
+
+
+    // ==========================================
+    // DEFINIR PREÇO
+    // ==========================================
+
+    if (plano === "Mensal") {
+
+        nomePlano.textContent =
+            "Plano Mensal";
+
+        valor = 4.99;
+
+    }
+
+    else if (plano === "Anual") {
+
+        nomePlano.textContent =
+            "Plano Anual";
+
+        valor = 24.90;
+
+    }
+
+    else if (plano === "Vitalício") {
+
+        nomePlano.textContent =
+            "Plano Vitalício";
+
+        valor = 49.90;
+
+    }
+
+    else {
+
+        nomePlano.textContent =
+            "Nenhum plano selecionado";
+
+        valor = 0;
+
+    }
+
+
+
+    // ==========================================
+    // FORMATAÇÃO
+    // ==========================================
+
+    const valorFormatado =
+        valor.toLocaleString(
+            "pt-BR",
+            {
+                style: "currency",
+                currency: "BRL"
+            }
+        );
+
+
+    valorPlano.textContent =
+        valorFormatado;
+
+
+    planoFormulario.value =
+        plano || "";
+
+
+    valorFormulario.value =
+        valorFormatado;
+
+
+
+    // ==========================================
+    // GERAR PEDIDO
+    // ==========================================
+
+    function gerarNumeroPedido() {
+
+        const agora =
+            new Date();
+
+
+        const ano =
+            agora.getFullYear();
+
+
+        const mes =
+            String(
+                agora.getMonth() + 1
+            ).padStart(2, "0");
+
+
+        const dia =
+            String(
+                agora.getDate()
+            ).padStart(2, "0");
+
+
+        const numero =
+            Math.floor(
+                1000 +
+                Math.random() * 9000
+            );
+
+
+        return (
+            "ZENO-" +
+            ano +
+            mes +
+            dia +
+            "-" +
+            numero
+        );
+
+    }
+
+
+    const numeroPedido =
+        gerarNumeroPedido();
+
+
+    document
+        .getElementById("numeroPedido")
+        .textContent =
+        numeroPedido;
+
+
+    pedidoFormulario.value =
+        numeroPedido;
+
+
+
+    // ==========================================
+    // SALVAR DADOS
+    // ==========================================
+
+    localStorage.setItem(
+        "pedidoZeno",
+        numeroPedido
+    );
+
+
+    localStorage.setItem(
+        "valorZeno",
+        valorFormatado
+    );
+
+
+
+    // ==========================================
+    // COPIAR PIX
+    // ==========================================
+
+    document
+        .getElementById("copiarPix")
+        .addEventListener(
+            "click",
+            function() {
+
+
+                const chave =
+                    document
+                    .getElementById("chavePix")
+                    .textContent
+                    .trim();
+
+
+                if (
+                    navigator.clipboard &&
+                    navigator.clipboard.writeText
+                ) {
+
+                    navigator.clipboard
+                        .writeText(chave)
+                        .then(function() {
+
+                            alert(
+                                "✅ Chave Pix copiada!"
+                            );
+
+                        });
+
+                }
+
+                else {
+
+                    const campo =
+                        document.createElement(
+                            "textarea"
+                        );
+
+
+                    campo.value =
+                        chave;
+
+
+                    document.body
+                        .appendChild(campo);
+
+
+                    campo.select();
+
+
+                    document.execCommand(
+                        "copy"
+                    );
+
+
+                    campo.remove();
+
+
+                    alert(
+                        "✅ Chave Pix copiada!"
+                    );
+
+                }
+
+            }
+        );
+
+
+
+    // ==========================================
+    // MOSTRAR FORMULÁRIO
+    // ==========================================
+
+    document
+        .getElementById("pagamentoFeito")
+        .addEventListener(
+            "click",
+            function() {
+
+
+                const formulario =
+                    document.getElementById(
+                        "formulario"
+                    );
+
+
+                formulario.style.display =
+                    "block";
+
+
+                this.style.display =
+                    "none";
+
+
+                formulario.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+
+    // ==========================================
+    // ENVIAR CONFIRMAÇÃO
+    // ==========================================
+
+    document
+        .getElementById("enviar")
+        .addEventListener(
+            "click",
+            function() {
+
+
+                const nome =
+                    document
+                    .getElementById("nome")
+                    .value
+                    .trim();
+
+
+                const email =
+                    document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+                if (nome === "") {
+
+                    alert(
+                        "Digite seu nome."
+                    );
+
+                    return;
+
+                }
+
+
+                if (email === "") {
+
+                    alert(
+                        "Digite seu e-mail."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!email.includes("@")) {
+
+                    alert(
+                        "Digite um e-mail válido."
+                    );
+
+                    return;
+
+                }
+
+
+
+                const assunto =
+                    encodeURIComponent(
+                        "Novo pedido Zeno - " +
+                        numeroPedido
+                    );
+
+
+                const mensagem =
+                    encodeURIComponent(
+
+                        "NOVO PEDIDO ZENO FINANCEIRO\n\n" +
+
+                        "Número do pedido: " +
+                        numeroPedido +
+
+                        "\n\n" +
+
+                        "DADOS DO CLIENTE\n" +
+
+                        "Nome: " +
+                        nome +
+
+                        "\n" +
+
+                        "E-mail: " +
+                        email +
+
+                        "\n\n" +
+
+                        "DADOS DA COMPRA\n" +
+
+                        "Plano: " +
+                        plano +
+
+                        "\n" +
+
+                        "Valor: " +
+                        valorFormatado +
+
+                        "\n" +
+
+                        "Pagamento: Pix" +
+
+                        "\n\n" +
+
+                        "Verificar o recebimento do Pix antes " +
+                        "de liberar a licença.\n\n" +
+
+                        "Zeno Financeiro"
+
+                    );
+
+
+                // ABRE O E-MAIL
+
+                window.location.href =
+                    "mailto:dieksom25@gmail.com" +
+                    "?subject=" +
+                    assunto +
+                    "&body=" +
+                    mensagem;
+
+
+                // SALVA OS DADOS DO CLIENTE
+
+                localStorage.setItem(
+                    "nomeClienteZeno",
+                    nome
+                );
+
+
+                localStorage.setItem(
+                    "emailClienteZeno",
+                    email
+                );
+
+
+                // ABRE A CONFIRMAÇÃO
+
+                setTimeout(function() {
+
+                    window.location.href =
+                        "confirmacao.html";
+
+                }, 1500);
+
+            }
+        );
+
+
+</script>
+
+
+</body>
+
+</html>
+
