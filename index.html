@@ -1,0 +1,319 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Zeno Financeiro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #1e293b;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #cbd5e1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .titulo h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .titulo p {
+            color: #64748b;
+        }
+
+        .planos {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(250px, 1fr)
+            );
+            gap: 25px;
+        }
+
+        .plano {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            text-align: center;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .plano h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .preco {
+            font-size: 32px;
+            font-weight: bold;
+            color: #16a34a;
+            margin-bottom: 25px;
+        }
+
+        .buy-button {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+
+            background: #111827;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .buy-button:hover {
+            background: #374151;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            padding: 30px;
+        }
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 26px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>
+        ZENO FINANCEIRO
+    </h1>
+
+    <p>
+        Controle financeiro simples e inteligente
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+    <div class="titulo">
+
+        <h2>
+            Escolha seu plano
+        </h2>
+
+        <p>
+            Escolha o plano ideal para você.
+        </p>
+
+    </div>
+
+
+    <div class="planos">
+
+
+        <!-- =====================================
+             PLANO MENSAL
+        ====================================== -->
+
+        <div class="plano">
+
+            <h3>
+                Plano Mensal
+            </h3>
+
+            <div class="preco">
+                R$ 4,99
+            </div>
+
+            <button
+                class="buy-button"
+                data-plan="Mensal"
+                data-price="4.99">
+
+                Comprar
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================================
+             PLANO TRIMESTRAL
+        ====================================== -->
+
+        <div class="plano">
+
+            <h3>
+                Plano Trimestral
+            </h3>
+
+            <div class="preco">
+                R$ 10,99
+            </div>
+
+            <button
+                class="buy-button"
+                data-plan="Trimestral"
+                data-price="10.99">
+
+                Comprar
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================================
+             PLANO ANUAL
+        ====================================== -->
+
+        <div class="plano">
+
+            <h3>
+                Plano Anual
+            </h3>
+
+            <div class="preco">
+                R$ 49,99
+            </div>
+
+            <button
+                class="buy-button"
+                data-plan="Anual"
+                data-price="49.99">
+
+                Comprar
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © 2026 Zeno Financeiro
+
+</footer>
+
+
+<script>
+
+    // ==========================================
+    // BOTÕES DE COMPRA
+    // ==========================================
+
+    const botoesCompra =
+        document.querySelectorAll(
+            ".buy-button"
+        );
+
+
+    botoesCompra.forEach(
+        function (botao) {
+
+            botao.addEventListener(
+                "click",
+                function () {
+
+                    // Pega o plano clicado
+                    const plano =
+                        botao.getAttribute(
+                            "data-plan"
+                        );
+
+
+                    // Pega o preço do plano clicado
+                    const preco =
+                        botao.getAttribute(
+                            "data-price"
+                        );
+
+
+                    // Salva o plano
+                    localStorage.setItem(
+                        "planoZeno",
+                        plano
+                    );
+
+
+                    // Salva o preço
+                    localStorage.setItem(
+                        "precoZeno",
+                        preco
+                    );
+
+
+                    // Vai para o pagamento
+                    window.location.href =
+                        "pagamento.html";
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>
+
